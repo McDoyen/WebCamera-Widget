@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.mendix.widget.custom.camera.Camera" needsEntityContext="true" offlineCapable="true" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../../../../../xsd/widget.xsd">
+    <name>Camera</name>
+    <description></description>
+    <icon>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfhCgwJFhuIhoIqAAABhUlEQVRIx+3UP2sUURQF8N9kXVgLG5EQUxjShZDCKSRgwE+wyhb5BEkXkm3sxDKN1YKdlWAjdkFMb2WCSwgZ0TJlAlqJsNGw2bHRdf68iQPbifc2dw7nnvPmvjvD/4gy9Q1PNOx5hlXtEvfMlmERvJKpr7qt4TNanroZsHvveb1zbUmDeZwzHL9CxwOzOfSO6xXS+76O6xOv7bBZ4VYvNzmcSOAwMsrdRDbOvdKXmBG7bxF88Ng9D8ecVKX2gSXM6VjW0rRtKLWGyJcMr7K9acH+r6eBrsi61I5r2jlmsP2HJQsGOayHXanzAjco8IKx++8cWRGXuVPB8fXNWS5tzKrEoEgNCyTiABq7kNQTmHEaQE8pbGylQOzIWQndM+1WmRwa4kdN3QL2SctGgFuxB9siPaNM+6J53+oLDK1jRc9bL3W1zDsIMi/5UHbFGmDaRtA9lUZSl8VAYjY0uj/rcVFxE/ViNKU/QTv9hu86lX+Ev/p7FOGudnnDasSJN95NdP5/JH4CyctNHfjcPXwAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTctMTAtMTJUMDk6MjI6MjcrMDI6MDCMRiaFAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE3LTEwLTEyVDA5OjIyOjI3KzAyOjAw/RueOQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=
+    </icon>
+    <properties>
+    <property key="widthUnit" type="enumeration" defaultValue="percentage">
+            <caption>Width unit</caption>
+            <category>Appearance</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="percentage">Percentage</enumerationValue>
+                <enumerationValue key="pixels">Pixels</enumerationValue>
+            </enumerationValues>
+        </property>
+         <property key="width" type="integer" defaultValue="100">
+            <caption>Max resolution width</caption>
+            <category>Appearance</category>
+            <description/>
+        </property>
+        <property key="heightUnit" type="enumeration" defaultValue="percentageOfParent">
+            <caption>Height unit</caption>
+            <category>Appearance</category>
+            <description>'Percentage of width' is the aspect ratio, 'Pixels' is absolute. Warning: the 'Percentage of parent' only works when the parent has an absolute height, else it will not display</description>
+            <enumerationValues>
+                <enumerationValue key="percentageOfWidth">Percentage of width</enumerationValue>
+                <enumerationValue key="pixels">Pixels</enumerationValue>
+                <enumerationValue key="percentageOfParent">Percentage of parent</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="height" type="integer" defaultValue="0">
+            <caption>Max resolution height</caption>
+            <category>Appearance</category>
+            <description/>
+        </property>
+        <property key="fileType" type="enumeration" defaultValue="jpeg">
+            <caption>File type</caption>
+            <category>Behaviour</category>
+             <description>Select the format in which the image is captured.</description>
+            <enumerationValues>
+                <enumerationValue key="svg">svg</enumerationValue>
+                <enumerationValue key="jpeg">jpeg</enumerationValue>
+                <enumerationValue key="png">png</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="imageFilter" type="enumeration" defaultValue="none">
+            <caption>Image filter</caption>
+            <category>Appearance</category>
+             <description>Filter to be applied to the image</description>
+            <enumerationValues>
+                <enumerationValue key="grayscale">Grayscale</enumerationValue>
+                <enumerationValue key="none">Color</enumerationValue>
+                <enumerationValue key="sepia">Sepia</enumerationValue>
+                <enumerationValue key="huerotate">Hue</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="photo" type="entity" required="true">
+            <caption>Select entity</caption>
+            <category>Behaviour</category>
+            <description>This is the entity property</description>
+        </property>
+        <property key="saveImage" type="microflow" required="false" defaultValue="">
+            <caption>After use photo microflow</caption>
+            <category>Behaviour</category>
+            <description>Select a microflow to execute after the image has successfully saved.</description>
+            <returnType type="String" />
+        </property>
+        <property key="captureButtonName" type="translatableString" required="false" >
+            <caption>Capture button</caption>
+            <category>Button captions</category>
+            <description>The class on the button that captures the image. This button should not have an action.</description>
+            <translations>
+                <translation lang="en_US">Take photo</translation>
+                <translation lang="nl_NL">Maak enn foto</translation>
+            </translations>
+        </property>
+        <property key="captureButtonIcon" type="string" defaultValue="camera">
+            <caption>Capture icon</caption>
+            <category>Button captions</category>
+            <description>The name of the glyph-icon to use for capture feature.</description>
+        </property>
+        <property key="switchCameraIcon" type="string" defaultValue="refresh">
+            <caption>Switch camera icon</caption>
+            <category>Button captions</category>
+            <description>The name of the glyph-icon to use for switch camera. </description>
+        </property>
+        <property key="usePictureButtonIcon" type="string" defaultValue="download">
+            <caption>Use picture icon</caption>
+            <category>Button captions</category>
+            <description>This button provides the option to capture the image.</description>
+        </property>
+        <property key="recaptureButtonName" type="translatableString" required="false" >
+            <caption>Recapture button</caption>
+            <category>Button captions</category>
+            <description>This button provides the option to take the picture again.</description>
+            <translations>
+                <translation lang="en_US">Retake photo</translation>
+                <translation lang="nl_NL">Maak enn foto</translation>
+            </translations>
+        </property>
+        <property key="usePictureButtonName" type="translatableString" required="false" >
+            <caption>OK button</caption>
+            <category>Button captions</category>
+            <description>This button acts as the OK/save/submit button. This button is hidden in capture mode.</description>
+            <translations>
+                <translation lang="en_US">Use photo</translation>
+                <translation lang="nl_NL">Gebruik foto</translation>
+            </translations>
+        </property>
+        <property key="captionsToUse" type="enumeration" defaultValue="icons">
+            <caption>Label to use</caption>
+            <category>Button captions</category>
+            <description>Select the type of labels for the buttons </description>
+            <enumerationValues>
+                <enumerationValue key="icons">Icons</enumerationValue>
+                <enumerationValue key="buttonNames">Buttons</enumerationValue>
+            </enumerationValues>
+        </property>
+    </properties>
+</widget>
