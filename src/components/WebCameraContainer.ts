@@ -1,31 +1,19 @@
 import { Component, createElement } from "react";
 
-import { FileFormats, WebCamera } from "./WebCamera";
+import { WebCamera } from "./WebCamera";
+
+import { parseStyle } from "../utils/ContainerUtils";
 
 interface WrapperProps {
-    class?: string;
     mxObject: mendix.lib.MxObject;
-    style?: object;
+    style: string;
 }
 
 export interface ModelerProps extends WrapperProps {
-    saveImage: string;
-    captureButtonName: string;
-    recaptureButtonName: string;
-    usePictureButtonName: string;
-    fileType: FileFormats;
     photo: string;
-    widthUnit: string;
-    heightUnit: string;
-    width: number;
-    height: number;
-    captureButtonIcon: string;
-    switchCameraIcon: string;
-    usePictureButtonIcon: string;
-    captionsToUse: string;
     name: string;
     contents: string;
- }
+}
 
 export interface ContainerProps extends ModelerProps {
     onClickAction: (image: { src: string, id: string }, microflowName: string) => {};
@@ -33,7 +21,7 @@ export interface ContainerProps extends ModelerProps {
     filter: string;
 }
 
-export default class CameraContainer extends Component<ContainerProps> {
+export default class WebCameraContainer extends Component<ContainerProps, {}> {
     private base64: string;
 
     constructor(props: ContainerProps) {
@@ -49,7 +37,8 @@ export default class CameraContainer extends Component<ContainerProps> {
         return createElement(WebCamera as any, {
             ...this.props as ModelerProps,
             filter: this.setFilter(),
-            onClickAction: this.savePhoto
+            onClickAction: this.savePhoto,
+            style: parseStyle(this.props.style)
         });
     }
 
@@ -77,16 +66,16 @@ export default class CameraContainer extends Component<ContainerProps> {
                 () => {
                     mx.ui.info("Image has been saved", false);
                     if (microflow) {
-                    window.mx.ui.action(microflow, {
-                        error: (error) => {
-                            window.mx.ui.error(`Error while executing microflow ${microflow}: ${error.message}`);
-                        },
-                        params: {
-                            applyto: "selection",
-                            guids: [ this.props.mxObject.getGuid() ]
-                        }
-                    }, this);
-                }
+                        window.mx.ui.action(microflow, {
+                            error: (error) => {
+                                window.mx.ui.error(`Error while executing microflow ${microflow}: ${error.message}`);
+                            },
+                            params: {
+                                applyto: "selection",
+                                guids: [ this.props.mxObject.getGuid() ]
+                            }
+                        }, this);
+                    }
                 },
                 error => { mx.ui.error(error.message, false); }
             );

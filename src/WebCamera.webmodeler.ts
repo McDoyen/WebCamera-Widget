@@ -1,12 +1,12 @@
 import { Component, createElement } from "react";
 
-import { CameraState, WebCamera } from "./components/WebCamera";
+import { WebCamera, WebCameraState } from "./components/WebCamera";
 import { ContainerProps, ModelerProps } from "./components/WebCameraContainer";
 
 declare function require(name: string): string;
 
 // tslint:disable-next-line class-name
-export class preview extends Component<ContainerProps, CameraState> {
+export class preview extends Component<ContainerProps, WebCameraState> {
     constructor(props: ContainerProps) {
         super(props);
 
